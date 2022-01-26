@@ -15,14 +15,23 @@ class CarsService {
 
     }
     async findOne(payload) {
+
         const result = CarsRepository.findOne(payload)
         return result
 
       }
     async delete(payload) {
+
         const result = await CarsRepository.delete(payload)
         return result
+
       }
+    async update(id, payload) {
+
+        const result = await CarsRepository.update(id, payload)
+        return result
+
+      }  
 } 
 
 module.exports = new CarsService() 
