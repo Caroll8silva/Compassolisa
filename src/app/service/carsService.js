@@ -8,7 +8,13 @@ class CarsService {
         return result
 
     }
-}
+    async find(payload) {
+        
+        const result = await CarsRepository.find(payload)
+        return result
+
+    }
+} 
 
 module.exports = new CarsService()
 
