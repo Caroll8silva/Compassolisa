@@ -4,8 +4,10 @@ class CarsController {
 
     async createCar(req, res) {
         try {
+
             const result = await carsService.create(req.body)
-            return res.status(201).json(result)
+            return res.status(201).json(result) 
+
         } catch (error) {
             return res.status(500).json(error.message)
           }
@@ -18,9 +20,24 @@ class CarsController {
 
         } catch (error) {
           return res.status(500).json(error.message)
-        }
-      }
-}
+          }
+    }
+    async getOneCar(req, res) {
+        try {
+          const { id } = req.params
+          const result = await carsService.findOne(id)
+          
+          if (!result) {
+            return res.status(404).json({ message: 'Car not found' });
+          }
+          
+          return res.status(200).json(result)
 
+        } catch (error) {
+
+          return res.status(500).json(error.message)
+          }
+    }
+}
 
 module.exports = new CarsController()

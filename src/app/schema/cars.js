@@ -17,7 +17,8 @@ const CarsSchema = mongoose.Schema({
     {
       descricao: {
         type: String,
-        required: true
+        required: true,
+        unique: true
       }
     }
   ],

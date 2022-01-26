@@ -9,14 +9,18 @@ class CarsService {
 
     }
     async find(payload) {
-        
+
         const result = await CarsRepository.find(payload)
         return result
 
     }
+    async findOne(payload) {
+        const result = CarsRepository.findOne(payload)
+        return result
+
+      }
 } 
 
-module.exports = new CarsService()
-
+module.exports = new CarsService() 
 
 
