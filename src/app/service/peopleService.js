@@ -19,7 +19,13 @@ class PeopleService {
         const result = PeopleRepository.findOne(payload)
         return result
 
-      }
+    }
+    async delete(payload) {
+
+        const result = await PeopleRepository.delete(payload)
+        return result
+
+    }  
 } 
 
 module.exports = new PeopleService() 

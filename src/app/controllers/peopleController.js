@@ -38,6 +38,22 @@ class PeopleController {
           return res.status(500).json(error.message)
           }
     }
+    async deletePeople(req, res) {
+        try {
+          const { id } = req.params
+          const result = await peopleService.delete(id)
+          
+          if (!result) {
+            return res.status(404).json({ message: 'Person not found' });
+          }
+          
+          return res.status(204).json()
+  
+        } catch (error) {
+  
+          return res.status(400).json(error.message)
+        }
+    }
 }
 
 module.exports = new PeopleController() 
