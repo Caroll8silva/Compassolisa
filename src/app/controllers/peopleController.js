@@ -12,6 +12,16 @@ class PeopleController {
             return res.status(500).json(error.message)
           }
     }
+    async getAllPeople(req, res) {
+        try {
+
+          const result = await peopleService.find(req.query)
+          return res.status(200).json(result)
+
+        } catch (error) {
+          return res.status(500).json(error.message)
+          }
+    }
 }
 
-module.exports = new PeopleController()
+module.exports = new PeopleController() 

@@ -8,6 +8,12 @@ class PeopleService {
         return result
 
     }
+    async find(payload) {
+
+        const result = await PeopleRepository.find(payload)
+        return result
+
+    } 
 } 
 
 module.exports = new PeopleService() 
