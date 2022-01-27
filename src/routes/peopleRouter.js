@@ -5,5 +5,6 @@ module.exports = (server, routes, prefix = '/api/v1/people') => {
   routes.get('/', peopleController.getAllPeople)
   routes.get('/:id', peopleController.getOnePerson)
   routes.delete('/:id', peopleController.deletePeople)
+  routes.put('/:id', peopleController.updatePeople)
   server.use(prefix, routes) 
 } 

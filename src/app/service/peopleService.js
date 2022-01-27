@@ -25,7 +25,13 @@ class PeopleService {
         const result = await PeopleRepository.delete(payload)
         return result
 
-    }  
+    }
+    async update(id, payload) {
+
+        const result = await PeopleRepository.update(id, payload)
+        return result
+
+      }  
 } 
 
 module.exports = new PeopleService() 
