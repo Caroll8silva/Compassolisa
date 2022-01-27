@@ -13,7 +13,13 @@ class PeopleService {
         const result = await PeopleRepository.find(payload)
         return result
 
-    } 
+    }
+    async findOne(payload) {
+
+        const result = PeopleRepository.findOne(payload)
+        return result
+
+      }
 } 
 
 module.exports = new PeopleService() 

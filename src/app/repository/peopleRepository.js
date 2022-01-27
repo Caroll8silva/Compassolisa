@@ -9,6 +9,10 @@ class PeopleRepository {
 
     return peopleSchema.find(payload)
   }
+  async findOne(payload) {
+    
+    return peopleSchema.findById(payload)
+  }
 }
 
 module.exports = new PeopleRepository()   
