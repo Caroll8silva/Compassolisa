@@ -7,7 +7,8 @@ const PeopleSchema = mongoose.Schema({
   },
   cpf: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   data_nascimento: {
     type: String,
@@ -24,7 +25,7 @@ const PeopleSchema = mongoose.Schema({
   },
   habilitado: {
     type: String,
-    enum: ['sim', 'nao'],
+    enum: ['sim', 'não'],
     required: true
   }
 });
