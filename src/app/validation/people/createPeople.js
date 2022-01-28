@@ -15,7 +15,9 @@ module.exports = async (req, res, next) => {
         data_nascimento: Joi
         .date()
         .required()
-        .format('DD/MM/YYYY'),
+        .format('DD/MM/YYYY')
+        .less('01/01/2004')
+        .max('now'),
         email: Joi
         .string()
         .email()
