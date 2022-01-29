@@ -8,7 +8,7 @@ class CarsRepository {
 
   async find(payload) {
 
-    return carsSchema.find(payload)
+    return carsSchema.paginate(payload)
   }
   async findOne(payload) {
     
