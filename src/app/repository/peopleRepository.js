@@ -7,7 +7,7 @@ class PeopleRepository {
   }
   async find(payload) {
 
-    return peopleSchema.find(payload)
+    return peopleSchema.paginate(payload)
   }
   async findOne(payload) {
     
