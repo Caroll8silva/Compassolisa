@@ -2,6 +2,9 @@ const AuthenticationRepository = require('../repository/AuthenticationRepository
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const authConfig = require('../config/auth.json')
+const BadRequest = require('../errors/badRequest')
+const NotFound = require('../errors/NotFound')
+const Forbidden = require('../errors/Forbidden')
 
 class AuthenticationService { 
 
@@ -9,14 +12,14 @@ class AuthenticationService {
         
         const result = await AuthenticationRepository.Authenticate(login)
         if (!result)
-        throw Error('User not found') 
+        throw new NotFound('User not found') 
 
         if (result.habilitado !== 'sim') 
         if (result.habilitado !== 'Sim')  
-        throw Error('User not enabled')
+        throw new Forbidden('User not enabled')
 
         if(!await bcrypt.compare(login.senha, result.senha))
-        throw Error('Invalid password')
+        throw new BadRequest('Invalid password')
 
         result.senha = undefined
 

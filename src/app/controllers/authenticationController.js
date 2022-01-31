@@ -1,5 +1,4 @@
 const AuthenticationService = require('../service/AuthenticationService')
-const authMiddleWares = require('../middlewares/authentication')
 
 class AuthenticationController { 
 
