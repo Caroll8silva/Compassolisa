@@ -224,4 +224,206 @@ paths:
           content:
             application/json:
               example: "Car not found"
+  /people:
+    get:
+      summary: Listar todas as pessoas
+      parameters:
+      - name: nome
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: cpf
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: data_nascimento
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: email
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: habilitado
+        in: query
+        schema:
+          type: string
+        required: false
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    _id:
+                       type: string
+                    nome:
+                      type: string
+                    cpf:
+                       type: string
+                    data_nascimento: 
+                       type: string
+                    email:
+                       type: string
+                    habilitado:
+                       type: string
+                       enum: 
+                        - sim
+                        - não
+    post: 
+      summary: Cadastrar pessoa
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                cpf:
+                  type: string
+                data_nascimento: 
+                  type: string
+                email:
+                  type: string
+                senha:
+                  type: string
+                habilitado:
+                  type: string
+      responses: 
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento: 
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+        400:
+          description: Cadastro falhou
+          content:
+            application/json: 
+              example: "Person not registered"
+  /people/{_id}:
+    
+    get:
+      summary: listar uma pessoa
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        200:
+          description: Pessoa Listada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento: 
+                    type: string
+                  email:
+                    type: string
+                  habilitado:
+                    type: string
+        400:
+          description: Erro ao listar essa pessoa
+          content:
+            application/json:
+              example: "bad request"
+    put:
+      summary: Atualizar uma pessoa
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento: 
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+      responses:
+        200:
+          description: Pessoa Atualizada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento: 
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+        400:
+          description: Erro ao atualizar pessoa
+          content:
+            application/json:
+              example: "bad request"
+    delete:
+      summary: Excluir pessoa
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses: 
+        204:
+          description: Pessoa excluida
+          content:
+            application/json:
+              example: "Deleted Person"
+        404:
+          description: Erro ao deletar Pessoa
+          content:
+            application/json:
+              example: "Person not found"
    
