@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Compassolisa
-  description: Sistema para abertura da locadora de carros "compassolisa" que atua no seguimento de aluguel de carro de luxo e semi luxo.
+  description: API para abertura da locadora de carros "compassolisa", que atua no seguimento de aluguel de carros de luxo e semi luxo.
   version: 0.0.1
   license:
     name: "Lincença: GPLv3"
@@ -13,8 +13,52 @@ servers:
 - url: http://localhost:3000/api/v1/
   description: API Compassolisa
 paths:
+  /authenticate:
+    post:
+      tags:
+        - Autenticação do usuário
+      summary: Autenticar um usuário
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                senha:
+                  type: string
+      responses:
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  name: 
+                    type: string
+                  email:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento:
+                    type: string  
+                  habilitado:
+                    type: string
+        400:
+          description: Cadastro falhou
+          content:
+            application/json: 
+              example: "Not authorized"
   /car:
     get:
+      security:
+        - auth: []
+      tags:
+        - Carros
       summary: Listar todos os carros
       parameters:
       - name: modelo
@@ -54,7 +98,11 @@ paths:
                     quantidadePassageiros:
                        type: number
 
-    post: 
+    post:
+      security:
+        - auth: []
+      tags:
+        - Carros
       summary: Cadastrar carro
       requestBody:
         content:
@@ -111,6 +159,10 @@ paths:
   /car/{_id}:
     
     get:
+      security:
+        - auth: []
+      tags:
+        - Carros
       summary: lista um carro
       parameters:
       - name: _id
@@ -149,6 +201,10 @@ paths:
             application/json:
               example: "bad request"
     put:
+      security:
+        - auth: []
+      tags:
+        - Carros
       summary: Atualizar um carro
       parameters:
       - name: _id
@@ -206,6 +262,10 @@ paths:
             application/json:
               example: "bad request"
     delete:
+      security:
+        - auth: []
+      tags:
+        - Carros
       summary: Excluir Carro
       parameters:
       - name: _id
@@ -226,6 +286,10 @@ paths:
               example: "Car not found"
   /people:
     get:
+      security:
+        - auth: []
+      tags:
+        - Pessoas
       summary: Listar todas as pessoas
       parameters:
       - name: nome
@@ -276,7 +340,11 @@ paths:
                        enum: 
                         - sim
                         - não
-    post: 
+    post:
+      security:
+        - auth: []
+      tags:
+        - Pessoas
       summary: Cadastrar pessoa
       requestBody:
         content:
@@ -322,8 +390,11 @@ paths:
             application/json: 
               example: "Person not registered"
   /people/{_id}:
-    
     get:
+      security:
+        - auth: []
+      tags:
+        - Pessoas
       summary: listar uma pessoa
       parameters:
       - name: _id
@@ -357,6 +428,10 @@ paths:
             application/json:
               example: "bad request"
     put:
+      security:
+        - auth: []
+      tags:
+        - Pessoas
       summary: Atualizar uma pessoa
       parameters:
       - name: _id
@@ -382,6 +457,9 @@ paths:
                     type: string
                   habilitado:
                     type: string
+                    enum: 
+                      - sim
+                      - não
       responses:
         200:
           description: Pessoa Atualizada
@@ -408,6 +486,10 @@ paths:
             application/json:
               example: "bad request"
     delete:
+      security:
+        - auth: []
+      tags:
+        - Pessoas
       summary: Excluir pessoa
       parameters:
       - name: _id
@@ -426,4 +508,9 @@ paths:
           content:
             application/json:
               example: "Person not found"
-   
+components:
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
