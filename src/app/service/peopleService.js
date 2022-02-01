@@ -1,39 +1,43 @@
-const PeopleRepository = require('../repository/peopleRepository')
+const PeopleRepository = require('../repository/peopleRepository');
 
 class PeopleService { 
 
-    async create(payload) {
+  async create(payload) {
         
-        const result = await PeopleRepository.create(payload)
-        return result
+    const result = await PeopleRepository.create(payload);
+    return result;
 
-    }
-    async find(payload) {
+  }
 
-        const result = await PeopleRepository.find(payload)
-        return result
+  async find(payload) {
 
-    }
-    async findOne(payload) {
+    const result = await PeopleRepository.find(payload);
+    return result;
 
-        const result = PeopleRepository.findOne(payload)
-        return result
+  }
 
-    }
-    async delete(payload) {
+  async findOne(payload) {
 
-        const result = await PeopleRepository.delete(payload)
-        return result
+    const result = PeopleRepository.findOne(payload);
+    return result;
 
-    }
-    async update(id, payload) {
+  }
 
-        const result = await PeopleRepository.update(id, payload)
-        return result
+  async delete(payload) {
 
-      }  
+    const result = await PeopleRepository.delete(payload);
+    return result;
+
+  }
+
+  async update(id, payload) {
+
+    const result = await PeopleRepository.update(id, payload);
+    return result;
+
+  }  
 } 
 
-module.exports = new PeopleService() 
+module.exports = new PeopleService(); 
 
 

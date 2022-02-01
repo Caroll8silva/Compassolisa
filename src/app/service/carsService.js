@@ -1,39 +1,43 @@
-const CarsRepository = require('../repository/carsRepository.js')
+const CarsRepository = require('../repository/carsRepository.js');
 
 class CarsService { 
 
-    async create(payload) {
+  async create(payload) {
         
-        const result = await CarsRepository.create(payload)
-        return result
+    const result = await CarsRepository.create(payload);
+    return result;
 
-    }
-    async find(payload) {
+  }
 
-        const result = await CarsRepository.find(payload)
-        return result
+  async find(payload) {
 
-    }
-    async findOne(payload) {
+    const result = await CarsRepository.find(payload);
+    return result;
 
-        const result = CarsRepository.findOne(payload)
-        return result
+  }
 
-      }
-    async delete(payload) {
+  async findOne(payload) {
 
-        const result = await CarsRepository.delete(payload)
-        return result
+    const result = CarsRepository.findOne(payload);
+    return result;
 
-      }
-    async update(id, payload) {
+  }
 
-        const result = await CarsRepository.update(id, payload)
-        return result
+  async delete(payload) {
 
-      }  
+    const result = await CarsRepository.delete(payload);
+    return result;
+
+  }
+
+  async update(id, payload) {
+
+    const result = await CarsRepository.update(id, payload);
+    return result;
+
+  }  
 } 
 
-module.exports = new CarsService() 
+module.exports = new CarsService(); 
 
 

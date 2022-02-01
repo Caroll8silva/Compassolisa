@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const mongoosePaginate = require('mongoose-paginate-v2')
+const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const CarsSchema = mongoose.Schema({
   modelo: {
@@ -27,17 +27,17 @@ const CarsSchema = mongoose.Schema({
     type: Number,
     required: true
   }
-})
+});
 
 CarsSchema.set('toJSON', {
-  transform: function (doc, rest){
+  transform (doc, rest){
   
-    delete rest.__v 
+    delete rest.___v; 
   }
-})
+});
 
-CarsSchema.plugin(mongoosePaginate)
+CarsSchema.plugin(mongoosePaginate);
 
-const car = mongoose.model('cars', CarsSchema)
+const car = mongoose.model('cars', CarsSchema);
 
-module.exports = car
+module.exports = car;

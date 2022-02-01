@@ -1,36 +1,36 @@
-const AuthenticationRepository = require('../repository/AuthenticationRepository')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const authConfig = require('../config/auth.json')
-const BadRequest = require('../errors/badRequest')
-const NotFound = require('../errors/NotFound')
-const Forbidden = require('../errors/Forbidden')
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const AuthenticationRepository = require('../repository/AuthenticationRepository');
+const authConfig = require('../config/auth.json');
+const BadRequest = require('../errors/badRequest');
+const NotFound = require('../errors/NotFound');
+const Forbidden = require('../errors/Forbidden');
 
 class AuthenticationService { 
 
-    async Authenticate(login) {
+  async Authenticate(login) {
         
-        const result = await AuthenticationRepository.Authenticate(login)
-        if (!result)
-        throw new NotFound('User not found') 
+    const result = await AuthenticationRepository.Authenticate(login);
+    if (!result)
+      throw new NotFound('User not found'); 
 
-        if (result.habilitado !== 'sim') 
-        if (result.habilitado !== 'Sim')  
-        throw new Forbidden('User not enabled')
+    if (result.habilitado !== 'sim') 
+      if (result.habilitado !== 'Sim')  
+        throw new Forbidden('User not enabled');
 
-        if(!await bcrypt.compare(login.senha, result.senha))
-        throw new BadRequest('Invalid password')
+    if(!await bcrypt.compare(login.senha, result.senha))
+      throw new BadRequest('Invalid password');
 
-        result.senha = undefined
+    result.senha = undefined;
 
-        const token = jwt.sign({id: result.id}, authConfig.secret, {
+    const token = jwt.sign({id: result.id}, authConfig.secret, {
 
-            expiresIn: 86400
-        })
+      expiresIn: 86400
+    });
 
-        return({result, token})
-    }
+    return({result, token});
+  }
     
 } 
 
-module.exports = new AuthenticationService() 
+module.exports = new AuthenticationService(); 

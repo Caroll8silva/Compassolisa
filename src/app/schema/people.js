@@ -1,6 +1,6 @@
-const bcrypt = require('bcryptjs/dist/bcrypt')
-const mongoose = require('mongoose')
-const mongoosePaginate = require('mongoose-paginate-v2')
+const bcrypt = require('bcryptjs/dist/bcrypt');
+const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const PeopleSchema = mongoose.Schema({
   nome: {
@@ -30,24 +30,23 @@ const PeopleSchema = mongoose.Schema({
     enum: ['sim', 'não'],
     required: true
   }
-})
+});
 
 PeopleSchema.set('toJSON', {
-  transform: function (doc, rest){
+  transform (doc, rest){
   
-    delete rest.__v 
+    delete rest.__v; 
   }
-})
+});
 
 PeopleSchema.pre('save', async function(next){
-  const hash = await bcrypt.hash(this.senha, 10)
-  this.senha = hash
-  next()
+  const hash = await bcrypt.hash(this.senha, 10);
+  this.senha = hash;
+  next();
 
-})
+});
 
+PeopleSchema.plugin(mongoosePaginate);
 
-PeopleSchema.plugin(mongoosePaginate)
-
-const person = mongoose.model('people', PeopleSchema)
-module.exports = person
+const person = mongoose.model('people', PeopleSchema);
+module.exports = person;
