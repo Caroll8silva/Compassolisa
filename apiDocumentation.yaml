@@ -1,0 +1,227 @@
+openapi: 3.0.1
+info:
+  title: Compassolisa
+  description: Sistema para abertura da locadora de carros "compassolisa" que atua no seguimento de aluguel de carro de luxo e semi luxo.
+  version: 0.0.1
+  license:
+    name: "Lincença: GPLv3"
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+externalDocs:
+  description: Repositório-(Github)
+  url: https://github.com/Caroll8silva/Compassolisa
+servers:
+- url: http://localhost:3000/api/v1/
+  description: API Compassolisa
+paths:
+  /car:
+    get:
+      summary: Listar todos os carros
+      parameters:
+      - name: modelo
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: cor
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: ano
+        in: query
+        schema:
+          type: number
+        required: false
+      - name: quantidadePassageiros
+        in: query
+        schema:
+          type: number
+        required: false
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    modelo:
+                      type: string
+                    cor:
+                       type: string
+                    ano: 
+                       type: number
+                    quantidadePassageiros:
+                       type: number
+
+    post: 
+      summary: Cadastrar carro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                modelo:
+                  type: string
+                cor:
+                  type: string
+                ano: 
+                  type: number
+                acessorios:
+                  type: array
+                  items:
+                    type: object
+                    properties: 
+                      descricao:
+                        type: string
+                quantidadePassageiros:
+                  type: number
+           
+      responses: 
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  _id:
+                    type: string
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                         type: string
+                  quantidadePassageiros:
+                    type: number
+        400:
+          description: Cadastro falhou
+          content:
+            application/json: 
+              example: "Car not registered"
+  /car/{_id}:
+    
+    get:
+      summary: lista um carro
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        200:
+          description: Carro listado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                         type: string
+                  quantidadePassageiros:
+                    type: number
+        400:
+          description: Erro ao listar esse carro
+          content:
+            application/json:
+              example: "bad request"
+    put:
+      summary: Atualizar um carro
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                modelo:
+                  type: string
+                cor: 
+                  type: string
+                ano:
+                  type: string
+                acessorios:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      descricao:
+                        type: string
+                quantidadePassageiros:
+                  type: number
+      responses:
+        200:
+          description: Carro atualizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                         type: string
+                  quantidadePassageiros:
+                    type: number
+        400:
+          description: Erro ao atualizar carro
+          content:
+            application/json:
+              example: "bad request"
+    delete:
+      summary: Excluir Carro
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses: 
+        204:
+          description: Carro excluído
+          content:
+            application/json:
+              example: "Deleted Car"
+        404:
+          description: Erro ao deletar Carro
+          content:
+            application/json:
+              example: "Car not found"
+   
