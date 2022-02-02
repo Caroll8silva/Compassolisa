@@ -1,4 +1,5 @@
 const Joi = require('joi').extend(require('@joi/date'));
+const cpfValidate = require('../../utils/cpfValidate');
 
 module.exports = async (req, res, next) => {  
   try {
@@ -9,7 +10,7 @@ module.exports = async (req, res, next) => {
       cpf: Joi
         .string()
         .required()
-        .pattern(/^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/)
+        .pattern(/^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/, cpfValidate)
         .min(11)
         .max(14),
       data_nascimento: Joi
@@ -29,6 +30,7 @@ module.exports = async (req, res, next) => {
       habilitado: Joi
         .string()
         .required()
+        .valid('sim', 'Sim', 'não', 'Não')
     });
   
     const { error } = await schema.validate(req.body, { abortEarly: false });

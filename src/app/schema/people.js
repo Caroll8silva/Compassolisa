@@ -9,8 +9,8 @@ const PeopleSchema = mongoose.Schema({
   },
   cpf: {
     type: String,
-    required: true,
-    unique: true
+    unique: true,
+    required: true
   },
   data_nascimento: {
     type: String,
@@ -18,7 +18,8 @@ const PeopleSchema = mongoose.Schema({
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   senha: {
     type: String,
