@@ -9,7 +9,13 @@ class PeopleRepository {
       const unique = await peopleSchema.findOne({ cpf });
       if (unique) throw new NotUnique('There is already a user with this cpf');
     };
+    const emailUnique = async (email) => {
+     
+      const unique = await peopleSchema.findOne({ email });
+      if (unique) throw new NotUnique('There is already a user with this email');
+    };
     await cpfUnique(payload.cpf);
+    await emailUnique(payload.email);
     return peopleSchema.create(payload);
   }
 
