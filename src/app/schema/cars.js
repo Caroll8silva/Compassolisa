@@ -4,7 +4,8 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 const CarsSchema = mongoose.Schema({
   modelo: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   cor: {
     type: String,
