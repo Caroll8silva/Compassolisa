@@ -7,6 +7,6 @@ module.exports = (server, routes, prefix = '/api/v1/people') => {
   routes.get('/', getPeopleValidation, peopleController.getAllPeople);
   routes.get('/:id', getPeopleValidation, peopleController.getOnePerson);
   routes.delete('/:id', peopleController.deletePeople);
-  routes.put('/:id', peopleController.updatePeople);
+  routes.put('/:id', getPeopleValidation, peopleController.updatePeople);
   server.use(prefix, routes); 
 }; 
