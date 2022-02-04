@@ -1,9 +1,13 @@
 const PeopleRepository = require('../repository/peopleRepository');
+const isUniqueCpf = require('../utils/people/isUniqueCpf');
+const isUniqueEmail = require('../utils/people/isUniqueEmail');
 
 class PeopleService { 
 
   async create(payload) {
-        
+     
+    await isUniqueCpf(payload.cpf);
+    await isUniqueEmail(payload.email);
     const result = await PeopleRepository.create(payload);
     return result;
 
@@ -32,6 +36,8 @@ class PeopleService {
 
   async update(id, payload) {
 
+    await isUniqueCpf(payload.cpf);
+    await isUniqueEmail(payload.email);
     const result = await PeopleRepository.update(id, payload);
     return result;
 

@@ -1,9 +1,11 @@
 const CarsRepository = require('../repository/carsRepository.js');
+const isUnique = require('../utils/cars/isUniqueCar');
 
 class CarsService { 
 
   async create(payload) {
-        
+    
+    await isUnique(payload.modelo);
     const result = await CarsRepository.create(payload);
     return result;
 
@@ -31,7 +33,8 @@ class CarsService {
   }
 
   async update(id, payload) {
-
+    
+    await isUnique(payload.modelo);
     const result = await CarsRepository.update(id, payload);
     return result;
 
