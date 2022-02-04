@@ -1,0 +1,516 @@
+openapi: 3.0.1
+info:
+  title: Compassolisa
+  description: API para abertura da locadora de carros "compassolisa", que atua no seguimento de aluguel de carros de luxo e semi luxo.
+  version: 0.0.1
+  license:
+    name: "Lincença: GPLv3"
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+externalDocs:
+  description: Repositório-(Github)
+  url: https://github.com/Caroll8silva/Compassolisa
+servers:
+- url: http://localhost:3000/api/v1/
+  description: API Compassolisa
+paths:
+  /authenticate:
+    post:
+      tags:
+        - Autenticação do usuário
+      summary: Autenticar um usuário
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                senha:
+                  type: string
+      responses:
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  name: 
+                    type: string
+                  email:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento:
+                    type: string  
+                  habilitado:
+                    type: string
+        400:
+          description: Cadastro falhou
+          content:
+            application/json: 
+              example: "Not authorized"
+  /car:
+    get:
+      security:
+        - auth: []
+      tags:
+        - Carros
+      summary: Listar todos os carros
+      parameters:
+      - name: modelo
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: cor
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: ano
+        in: query
+        schema:
+          type: number
+        required: false
+      - name: quantidadePassageiros
+        in: query
+        schema:
+          type: number
+        required: false
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    modelo:
+                      type: string
+                    cor:
+                       type: string
+                    ano: 
+                       type: number
+                    quantidadePassageiros:
+                       type: number
+
+    post:
+      security:
+        - auth: []
+      tags:
+        - Carros
+      summary: Cadastrar carro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                modelo:
+                  type: string
+                cor:
+                  type: string
+                ano: 
+                  type: number
+                acessorios:
+                  type: array
+                  items:
+                    type: object
+                    properties: 
+                      descricao:
+                        type: string
+                quantidadePassageiros:
+                  type: number
+           
+      responses: 
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  _id:
+                    type: string
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                         type: string
+                  quantidadePassageiros:
+                    type: number
+        400:
+          description: Cadastro falhou
+          content:
+            application/json: 
+              example: "Car not registered"
+  /car/{_id}:
+    
+    get:
+      security:
+        - auth: []
+      tags:
+        - Carros
+      summary: lista um carro
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        200:
+          description: Carro listado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                         type: string
+                  quantidadePassageiros:
+                    type: number
+        400:
+          description: Erro ao listar esse carro
+          content:
+            application/json:
+              example: "bad request"
+    put:
+      security:
+        - auth: []
+      tags:
+        - Carros
+      summary: Atualizar um carro
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                modelo:
+                  type: string
+                cor: 
+                  type: string
+                ano:
+                  type: string
+                acessorios:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      descricao:
+                        type: string
+                quantidadePassageiros:
+                  type: number
+      responses:
+        200:
+          description: Carro atualizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                         type: string
+                  quantidadePassageiros:
+                    type: number
+        400:
+          description: Erro ao atualizar carro
+          content:
+            application/json:
+              example: "bad request"
+    delete:
+      security:
+        - auth: []
+      tags:
+        - Carros
+      summary: Excluir Carro
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses: 
+        204:
+          description: Carro excluído
+          content:
+            application/json:
+              example: "Deleted Car"
+        404:
+          description: Erro ao deletar Carro
+          content:
+            application/json:
+              example: "Car not found"
+  /people:
+    get:
+      security:
+        - auth: []
+      tags:
+        - Pessoas
+      summary: Listar todas as pessoas
+      parameters:
+      - name: nome
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: cpf
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: data_nascimento
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: email
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: habilitado
+        in: query
+        schema:
+          type: string
+        required: false
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    _id:
+                       type: string
+                    nome:
+                      type: string
+                    cpf:
+                       type: string
+                    data_nascimento: 
+                       type: string
+                    email:
+                       type: string
+                    habilitado:
+                       type: string
+                       enum: 
+                        - sim
+                        - não
+    post:
+      security:
+        - auth: []
+      tags:
+        - Pessoas
+      summary: Cadastrar pessoa
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                cpf:
+                  type: string
+                data_nascimento: 
+                  type: string
+                email:
+                  type: string
+                senha:
+                  type: string
+                habilitado:
+                  type: string
+      responses: 
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento: 
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+        400:
+          description: Cadastro falhou
+          content:
+            application/json: 
+              example: "Person not registered"
+  /people/{_id}:
+    get:
+      security:
+        - auth: []
+      tags:
+        - Pessoas
+      summary: listar uma pessoa
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        200:
+          description: Pessoa Listada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento: 
+                    type: string
+                  email:
+                    type: string
+                  habilitado:
+                    type: string
+        400:
+          description: Erro ao listar essa pessoa
+          content:
+            application/json:
+              example: "bad request"
+    put:
+      security:
+        - auth: []
+      tags:
+        - Pessoas
+      summary: Atualizar uma pessoa
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento: 
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+                    enum: 
+                      - sim
+                      - não
+      responses:
+        200:
+          description: Pessoa Atualizada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento: 
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+        400:
+          description: Erro ao atualizar pessoa
+          content:
+            application/json:
+              example: "bad request"
+    delete:
+      security:
+        - auth: []
+      tags:
+        - Pessoas
+      summary: Excluir pessoa
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses: 
+        204:
+          description: Pessoa excluida
+          content:
+            application/json:
+              example: "Deleted Person"
+        404:
+          description: Erro ao deletar Pessoa
+          content:
+            application/json:
+              example: "Person not found"
+components:
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
