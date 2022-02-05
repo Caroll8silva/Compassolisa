@@ -4,7 +4,7 @@
  */
 
 module.exports = {
-  
+
   bail: true,
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -122,7 +122,7 @@ module.exports = {
   // roots: [
   //   "<rootDir>"
   // ],
-
+  testEnvironment: 'node',
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
 
