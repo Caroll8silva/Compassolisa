@@ -7,6 +7,11 @@ class RentalRepository {
     return RentalSchema.create(payload);
   
   }
+
+  async find(payload) {
+
+    return RentalSchema.paginate(payload);
+  }
   
 }
   

@@ -8,6 +8,13 @@ class RentalService {
     return result;
   
   }
+  
+  async find(payload) {
+
+    const result = await RentalRepository.find(payload);
+    return result;
+
+  }
 
 }   
 
