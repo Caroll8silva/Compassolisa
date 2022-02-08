@@ -1,4 +1,4 @@
-const carsController = require('../app/controllers/carsController');
+const carsController = require('../app/controllers/CarsController');
 const postValidation = require('../app/validation/cars/createCar');
 const getValidation = require('../app/validation/cars/getCar');
 

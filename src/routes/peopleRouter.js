@@ -1,4 +1,4 @@
-const peopleController = require('../app/controllers/peopleController');
+const peopleController = require('../app/controllers/PeopleController');
 const peopleValidation = require('../app/validation/people/createPeople');
 const getPeopleValidation = require('../app/validation/people/getPeople');
 
