@@ -1,9 +1,11 @@
 const RentalRepository = require('../repository/RentalRepository');
+const isUnique = require('../utils/rental/isUniqueCnpj');
 
 class RentalService { 
 
   async create(payload) {
-      
+     
+    await isUnique(payload.cnpj);
     const result = await RentalRepository.create(payload);
     return result;
   
@@ -32,6 +34,7 @@ class RentalService {
 
   async update(id, payload) {
     
+    await isUnique(payload.cnpj);
     const result = await RentalRepository.update(id, payload);
     return result;
 
