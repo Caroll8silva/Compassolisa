@@ -17,6 +17,11 @@ class RentalRepository {
     
     return RentalSchema.findById(payload);
   }
+
+  async delete(payload) {
+    
+    return RentalSchema.findByIdAndDelete(payload);
+  }
   
 }
   

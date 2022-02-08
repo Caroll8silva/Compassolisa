@@ -23,6 +23,13 @@ class RentalService {
 
   }
 
+  async delete(payload) {
+
+    const result = await RentalRepository.delete(payload);
+    return result;
+
+  }
+
 }   
 
 module.exports = new RentalService(); 
