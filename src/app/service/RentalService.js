@@ -16,6 +16,13 @@ class RentalService {
 
   }
 
+  async findOne(payload) {
+
+    const result = RentalRepository.findOne(payload);
+    return result;
+
+  }
+
 }   
 
 module.exports = new RentalService(); 

@@ -12,6 +12,11 @@ class RentalRepository {
 
     return RentalSchema.paginate(payload);
   }
+
+  async findOne(payload) {
+    
+    return RentalSchema.findById(payload);
+  }
   
 }
   
