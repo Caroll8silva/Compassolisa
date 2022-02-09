@@ -4,7 +4,7 @@ const isUnique = require('../utils/rental/isUniqueCnpj');
 class RentalService { 
 
   async create(payload) {
-     
+
     await isUnique(payload.cnpj);
     const result = await RentalRepository.create(payload);
     return result;
@@ -42,4 +42,4 @@ class RentalService {
 
 }   
 
-module.exports = new RentalService(); 
+module.exports = new RentalService();  
