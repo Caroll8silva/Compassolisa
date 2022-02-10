@@ -30,13 +30,15 @@ module.exports = async (req, res, next) => {
           bairro: Joi
             .string(),
           number: Joi
-            .string(),
+            .string()
+            .required(),
           localidade: Joi
             .string(),
           uf: Joi
             .string(),
           isFilial: Joi
             .boolean()
+            .required(),
         })
         .min(1),
     });

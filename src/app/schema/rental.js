@@ -33,8 +33,7 @@ const RentalSchema = mongoose.Schema(
           required: true
         },
         number: {
-          type: String,
-          required: true
+          type: String
         },
         localidade: {
           type: String,
@@ -45,8 +44,7 @@ const RentalSchema = mongoose.Schema(
           required: true
         },
         isFilial: {
-          type: Boolean,
-          required: true
+          type: Boolean
         }
       }
     ]
