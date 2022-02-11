@@ -22,7 +22,7 @@ class RentalService {
     await isUnique(payload.cnpj);
     const result = await RentalRepository.create(payload);
     return result;
-  
+
   }
   
   async find(payload) {
