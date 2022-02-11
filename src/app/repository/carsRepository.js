@@ -27,6 +27,16 @@ class CarsRepository {
     return carsSchema.findByIdAndUpdate(id, payload, { new: true });
     
   }
+
+  async patch(id, payload) {
+    return carsSchema.findOneAndUpdate(
+      { id, 'acessorios._id': payload._id }, 
+      { $set: { 'acessorios.$.descricao': payload.descricao }},
+      { new: true}
+    );
+  }
+    
 }
+
 
 module.exports = new CarsRepository();   

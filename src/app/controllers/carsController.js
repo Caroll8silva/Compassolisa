@@ -58,6 +58,18 @@ class CarsController {
       return res.status(400).json({'description:': error.name, 'name:': error.message});
     }
   }
+
+  async updateAcessories(req, res) {
+    try {
+      const { descricao } = req.body;
+      const { id, id2 } = req.params;
+      const result = await CarsService.patch(id, { _id: id2, descricao});
+
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json({'description:': error.name, 'name:': error.message});
+    }
+  }
 }
 
 module.exports = new CarsController();
