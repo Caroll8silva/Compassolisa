@@ -1,4 +1,4 @@
-class BadRequest extends Error {
+class Forbidden extends Error {
   constructor(messageStatus) {
     super(messageStatus);
     this.status = 403;
@@ -6,4 +6,4 @@ class BadRequest extends Error {
   }
 }
 
-module.exports = BadRequest;
+module.exports = Forbidden;

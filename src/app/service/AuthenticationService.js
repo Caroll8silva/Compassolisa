@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const AuthenticationRepository = require('../repository/AuthenticationRepository');
 const authConfig = require('../config/auth.json');
-const BadRequest = require('../errors/badRequest');
+const BadRequest = require('../errors/BadRequest');
 const NotFound = require('../errors/NotFound');
 const Forbidden = require('../errors/Forbidden');
 
