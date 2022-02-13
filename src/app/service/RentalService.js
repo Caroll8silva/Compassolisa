@@ -59,6 +59,8 @@ class RentalService {
   }
 
   async update(id, payload) {
+    
+    const address = payload.endereco;
     const countIsFilial = address.filter((value) => value.isFilial !== true);
 
     if (countIsFilial.length === 0 )   {
