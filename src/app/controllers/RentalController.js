@@ -25,7 +25,7 @@ class RentalController {
       const result = await RentalService.findOne(id);
 
       if (!result) {
-        return res.status(404).json({ message: 'Rental not found' });
+        return res.status(404).json({'description:': 'ID', 'name:': 'ID not Found'});
       }
       return res.status(200).json(result);
     } catch (error) {
@@ -39,7 +39,7 @@ class RentalController {
       const result = await RentalService.delete(id);
 
       if (!result) {
-        return res.status(404).json({ message: 'Rental not found' });
+        return res.status(404).json({'description:': 'ID', 'name:': 'ID not Found'});
       }
 
       return res.status(204).json();
@@ -53,6 +53,9 @@ class RentalController {
       const { id } = req.params;
       const result = await RentalService.update(id, req.body);
 
+      if (!result) {
+        return res.status(404).json({'description:': 'ID', 'name:': 'ID not Found'});
+      }
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({'description:': error.name, 'name:': error.message});
