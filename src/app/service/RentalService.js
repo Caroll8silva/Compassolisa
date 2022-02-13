@@ -59,7 +59,15 @@ class RentalService {
   }
 
   async update(id, payload) {
-    
+    const countIsFilial = address.filter((value) => value.isFilial !== true);
+
+    if (countIsFilial.length === 0 )   {
+      throw new BadRequest('There is no parent rental company in addresses ');
+    } 
+    else if( countIsFilial.length > 1 ){
+      throw new NotUnique('There can only be one parent rental company');
+      
+    }
     await isUnique(payload.cnpj);
     const result = await RentalRepository.update(id, payload);
     return result;
