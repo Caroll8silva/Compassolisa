@@ -570,6 +570,290 @@ paths:
           content:
             application/json:
               example: "Person not found"
+  /rental:
+    get:
+      tags:
+        - Locadoras
+      summary: Listar todas as locadoras
+      parameters:
+          - name: nome
+            in: query
+            schema:
+              type: string
+          - name: cnpj
+            in: query
+            schema:
+              type: string
+          - name: atividades
+            in: query
+            schema:
+              type: string
+          - name: cep
+            in: query
+            schema:
+              type: string
+          - name: number
+            in: query
+
+            schema:
+              type: string
+          - name: isFilial
+            in: query
+            schema:
+              type: string
+      responses:
+        200:
+          description: sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  nome:
+                    type: string
+                  cnpj:
+                    type: string
+                  atividades:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cep:
+                          type: string
+                        logradouro:
+                          type: string
+                        complemento:
+                          type: string
+                        bairro:
+                          type: string
+                        number:
+                          type: string
+                        localidade:
+                          type: string
+                        uf:
+                          type: string
+                        isFilial:
+                          type: string   
+        400:
+          description: Erro ao listar locadoras
+          content:
+            application/json:
+              example: "bad request"
+    post:
+      tags:
+        - Locadoras
+      summary: Cadastrar Locadora
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                cnpj:
+                  type: string
+                atividades:
+                  type: string
+                endereco:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      cep:
+                        type: string
+                      number:
+                        type: string
+                      isFilial:
+                        type: boolean
+      responses:
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  nome:
+                    type: string
+                  cnpj:
+                    type: string
+                  atividades:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cep:
+                          type: string
+                        logradouro:
+                          type: string
+                        complemento:
+                          type: string
+                        bairro:
+                          type: string
+                        number:
+                          type: string
+                        localidade:
+                          type: string
+                        uf:
+                          type: string
+                        isFilial:
+                          type: string
+        400:
+          description: Cadastro falhou
+          content:
+            application/json:
+              example: "Rental not registered"
+  /rental/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      tags:
+        - Locadoras
+      summary: listar uma locadora
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  nome:
+                    type: string
+                  cnpj:
+                    type: string
+                  atividades:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cep:
+                          type: string
+                        logradouro:
+                          type: string
+                        complemento:
+                          type: string
+                        bairro:
+                          type: string
+                        number:
+                          type: number
+                        localidade:
+                          type: string
+                        uf:
+                          type: string
+                        isFilial:
+                          type: string
+        400:
+          description: Erro ao listar essa locadora
+          content:
+            application/json:
+              example: "bad request"
+    put:
+      tags:
+        - Locadoras
+      summary: Atualizar uma locadora
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                cnpj:
+                  type: string
+                atividades:
+                  type: string
+                endereco:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      cep:
+                        type: string
+                      number:
+                        type: string
+                      isFilial:
+                        type: boolean
+      responses:
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  nome:
+                    type: string
+                  cnpj:
+                    type: string
+                  atividades:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cep:
+                          type: string
+                        logradouro:
+                          type: string
+                        complemento:
+                          type: string
+                        bairro:
+                          type: string
+                        number:
+                          type: string
+                        localidade:
+                          type: string
+                        uf:
+                          type: string
+                        isFilial:
+                          type: string
+        400:
+          description: Erro ao atualizar locadora
+          content:
+            application/json:
+              example: "bad request"
+        404:
+          description: Erro ao atualizar locadora
+          content:
+            application/json:
+              example: "Rental not found"
+    delete:
+      tags:
+        - Locadoras
+      summary: Excluir locadora
+      responses:
+        204:
+          description: Locadora excluida
+          content:
+            application/json:
+              example: "Deleted Rentaç"
+        404:
+          description: Erro ao deletar locadora
+          content:
+            application/json:
+              example: "Rental not found"
 components:
   securitySchemes:
     auth:
