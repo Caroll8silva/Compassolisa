@@ -156,7 +156,7 @@ paths:
           content:
             application/json: 
               example: "Car not registered"
-  /car/{_id}:
+  /car/{id}:
     
     get:
       security:
@@ -165,7 +165,7 @@ paths:
         - Carros
       summary: lista um carro
       parameters:
-      - name: _id
+      - name: id
         in: path
         schema:
           type: string
@@ -207,7 +207,7 @@ paths:
         - Carros
       summary: Atualizar um carro
       parameters:
-      - name: _id
+      - name: id
         in: path
         schema:
           type: string
@@ -268,7 +268,7 @@ paths:
         - Carros
       summary: Excluir Carro
       parameters:
-      - name: _id
+      - name: id
         in: path
         schema:
           type: string
@@ -284,6 +284,68 @@ paths:
           content:
             application/json:
               example: "Car not found"
+             
+  /car/{id}/acessorios/{id2}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id2
+        in: path
+        schema:
+          type: string
+        required: true
+    patch:
+      security:
+        - auth: []
+      tags:
+        - Carros
+      summary: Atualizar uma descrição do carro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+      responses: 
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  _id:
+                    type: string
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                         type: string
+                  quantidadePassageiros:
+                    type: number
+        400:
+          description: atualização falhou
+          content:
+            application/json: 
+              example: "description not updated"
+        404:
+          description: Erro ao atualizar descrição
+          content:
+            application/json:
+              example: "ID not found"
   /people:
     get:
       security:
@@ -389,7 +451,7 @@ paths:
           content:
             application/json: 
               example: "Person not registered"
-  /people/{_id}:
+  /people/{id}:
     get:
       security:
         - auth: []
@@ -397,7 +459,7 @@ paths:
         - Pessoas
       summary: listar uma pessoa
       parameters:
-      - name: _id
+      - name: id
         in: path
         schema:
           type: string
@@ -434,7 +496,7 @@ paths:
         - Pessoas
       summary: Atualizar uma pessoa
       parameters:
-      - name: _id
+      - name: id
         in: path
         schema:
           type: string
@@ -492,7 +554,7 @@ paths:
         - Pessoas
       summary: Excluir pessoa
       parameters:
-      - name: _id
+      - name: id
         in: path
         schema:
           type: string
