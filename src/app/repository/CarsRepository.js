@@ -38,9 +38,4 @@ class CarsRepository {
     
 }
 
-<<<<<<< HEAD:src/app/repository/carsRepository.js
-
 module.exports = new CarsRepository();   
-=======
-module.exports = new CarsRepository();   
->>>>>>> f39748d180533846c1fd832cb3e04882b0fbb4a2:src/app/repository/CarsRepository.js
