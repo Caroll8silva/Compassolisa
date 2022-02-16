@@ -36,7 +36,7 @@ const PeopleSchema = mongoose.Schema({
 PeopleSchema.set('toJSON', {
   transform (doc, rest){
   
-    delete rest.___v; 
+    delete rest.__v; 
   }
 });
 

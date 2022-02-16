@@ -51,6 +51,13 @@ const RentalSchema = mongoose.Schema(
   }
 );
 
+RentalSchema.set('toJSON', {
+  transform (doc, rest){
+  
+    delete rest.__v; 
+  }
+});
+
 RentalSchema.plugin(mongoosePaginate);
 
 const carRental = mongoose.model('rental', RentalSchema);

@@ -33,7 +33,7 @@ const CarsSchema = mongoose.Schema({
 CarsSchema.set('toJSON', {
   transform (doc, rest){
   
-    delete rest.___v; 
+    delete rest.__v; 
   }
 });
 
