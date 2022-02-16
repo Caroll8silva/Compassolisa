@@ -36,11 +36,11 @@ const PeopleSchema = mongoose.Schema({
 PeopleSchema.set('toJSON', {
   transform (doc, rest){
   
-    delete rest.__v; 
+    delete rest.___v; 
   }
 });
 
-PeopleSchema.pre('save', async function(next){
+PeopleSchema.pre('save', async function password(next){
   const hash = await bcrypt.hash(this.senha, 10);
   this.senha = hash;
   next();

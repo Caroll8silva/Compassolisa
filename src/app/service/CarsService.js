@@ -1,4 +1,4 @@
-const CarsRepository = require('../repository/CarsRepository.js');
+const CarsRepository = require('../repository/CarsRepository');
 const isUnique = require('../utils/cars/isUniqueCar');
 
 class CarsService { 

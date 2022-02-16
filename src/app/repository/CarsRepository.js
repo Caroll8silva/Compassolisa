@@ -1,4 +1,4 @@
-const carsSchema = require('../schema/cars.js');
+const carsSchema = require('../schema/cars');
 
 class CarsRepository { 
   async create(payload) {
