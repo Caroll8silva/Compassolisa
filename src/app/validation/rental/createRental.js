@@ -25,7 +25,8 @@ module.exports = async (req, res, next) => {
         .items({
           cep: Joi
             .string()
-            .min(1),
+            .min(1)
+            .required(),
           logradouro: Joi
             .string(),
           complemento: Joi
@@ -41,7 +42,6 @@ module.exports = async (req, res, next) => {
             .string(),
           isFilial: Joi
             .boolean()
-            .trim()
             .required(),
         })
         .min(1),
