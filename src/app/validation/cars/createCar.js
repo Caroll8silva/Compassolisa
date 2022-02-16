@@ -13,7 +13,6 @@ module.exports = async (req, res, next) => {
         .required(),
       ano: Joi
         .number()
-        .trim()
         .integer()
         .min(1950)
         .max(2022)
@@ -30,7 +29,6 @@ module.exports = async (req, res, next) => {
         .min(1),
       quantidadePassageiros: Joi
         .number()
-        .trim()
         .required()
     });
   
