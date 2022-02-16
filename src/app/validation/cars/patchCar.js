@@ -6,6 +6,7 @@ module.exports = async (req, res, next) => {
     
       descricao: Joi
         .string()
+        .trim()
         .min(3)
         .required()
 

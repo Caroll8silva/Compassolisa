@@ -5,16 +5,19 @@ module.exports = async (req, res, next) => {
     const schema = Joi.object({
       nome: Joi
         .string()
+        .trim()
         .min(3)
         .required(),
       cnpj: Joi
         .string()
+        .trim()
         .min(14)
         .max(18)
         .pattern(/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/)
         .required(),
       atividades: Joi
         .string()
+        .trim()
         .required(),
       endereco: Joi
         .array()
@@ -38,6 +41,7 @@ module.exports = async (req, res, next) => {
             .string(),
           isFilial: Joi
             .boolean()
+            .trim()
             .required(),
         })
         .min(1),

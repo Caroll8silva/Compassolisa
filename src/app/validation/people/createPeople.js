@@ -6,10 +6,12 @@ module.exports = async (req, res, next) => {
     const schema = Joi.object({
       nome: Joi
         .string()
+        .trim()
         .required()
         .min(3),
       cpf: Joi
         .string()
+        .trim()
         .required()
         .pattern(/^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/, cpfValidate)
         .min(11)
@@ -22,10 +24,12 @@ module.exports = async (req, res, next) => {
         .max('now'),
       email: Joi
         .string()
+        .trim()
         .email()
         .required(),
       senha: Joi
         .string()
+        .trim()
         .required()
         .min(6),
       habilitado: Joi
