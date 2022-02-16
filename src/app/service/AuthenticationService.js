@@ -13,10 +13,11 @@ class AuthenticationService {
     const result = await AuthenticationRepository.Authenticate(login);
     if (!result)
       throw new NotFound('User not found'); 
+    const dados = result.habilitado.toLowerCase;
+    
+    if (dados !== 'sim')
 
-    if (result.habilitado !== 'sim') 
-      if (result.habilitado !== 'Sim')  
-        throw new Forbidden('User not enabled');
+      throw new Forbidden('User not enabled');
 
     if(!await bcrypt.compare(login.senha, result.senha))
       throw new BadRequest('Invalid password');
