@@ -13,7 +13,7 @@ class AuthenticationService {
     const result = await AuthenticationRepository.Authenticate(login);
     if (!result)
       throw new NotFound('User not found'); 
-    const dados = result.habilitado.toLowerCase;
+    const dados = result.habilitado.toLowerCase();
     
     if (dados !== 'sim')
 
