@@ -57,6 +57,26 @@ Rota para inserir um carro (POST)
 
 ![postcar](https://user-images.githubusercontent.com/63256085/152078840-eebdb4b0-41b6-4814-a970-68158915087a.PNG)
 
+Exemplo: 
+```bash
+{
+"modelo": "GhB S10 2.8",
+"cor": "branco",
+"ano": "2021",
+"acessorios": [
+{ "descricao": "Ar-condicionado" },
+{ "descricao": "Dir. Hidráulica" },
+{ "descricao": "Cabine Dupla" },
+{ "descricao": "Tração 4x4" },
+{ "descricao": "4 portas" },
+{ "descricao": "Diesel" },
+{ "descricao": "Air bag" },
+{ "descricao": "ABS" }
+],
+"quantidadePassageiros": 5
+}
+ ```
+
 Rota para listar todos os carros (GET)
 <br>
 
@@ -72,6 +92,14 @@ Rota para atualizar um carro (PUT)
 
 ![putcar](https://user-images.githubusercontent.com/63256085/152079575-d47dc50b-8ebf-43ad-bed3-5c9ad8c0b5ba.PNG)
 
+(Qualquer campo pode ser alterado)
+Exemplo: 
+```bash
+{
+"cor": "amarelo",
+"ano": "2010",
+}
+ ```
 Rota para deletar um carro (DELETE)
 <br>
 
@@ -82,11 +110,30 @@ Rota para atualizar um acessório do carro (PATCH)
 
 ![patchcar](https://user-images.githubusercontent.com/63256085/153996133-88cbc8ba-6033-45f4-bc1e-925ff6784bfb.png)
 
+Exemplo: 
+```bash
+{ 
+    "descricao": "5 portas" 
+    
+}
+ ```
 ### Rota de pessoas
 Rota para inserir uma pessoa (POST)
 <br>
 
 ![postpeople](https://user-images.githubusercontent.com/63256085/152080110-a17014d5-7f60-425a-93d3-9f0494d511bc.PNG)
+
+Exemplo:
+```bash
+{
+"nome": "Nome teste",
+"cpf": "133.147.860-40",
+"data_nascimento": "07/08/2000",
+"email": "emailteste@gmail.com",
+"senha": "123456",
+"habilitado": "sim"
+}
+ ```
 
 Rota para listar todas as pessoas (GET)
 <br>
@@ -103,6 +150,14 @@ Rota para atualizar uma pessoa (PUT)
 
 ![putpeople](https://user-images.githubusercontent.com/63256085/152080711-561edf26-756d-436f-b185-522410ac35ba.PNG)
 
+(Qualquer campo pode ser alterado)
+Exe(pode ser alterado qualquer campo)mplo:
+```bash
+{
+"email": "teste123@gmail.com",
+"habilitado": "não"
+}
+ ```
 Rota para deletar uma pessoa (DELETE)
 <br>
 
@@ -115,6 +170,28 @@ Rota para inserir uma locadora (POST)
 
 ![postRental](https://user-images.githubusercontent.com/63256085/153994863-35665c4c-0484-40c6-bc44-73881f1915bd.PNG)
 
+Exemplo:
+```bash
+{
+ "nome": "Localiza Rent a Car",   
+ "cnpj": "77.748.007/7010-01",    
+ "atividades": "Aluguel de Carros E Gestão de Frotas",    
+ "endereco": [      
+     {        
+     "number":"1234",        
+     "isFilial": true,  
+     "cep": "53090550"     
+         
+     },
+     {        
+     "number":"1234",        
+     "isFilial":false,  
+     "cep": "53090500"     
+         
+     }
+ ]
+}
+ ```
 Rota para listar todas as locadoras (GET)
 <br>
 
@@ -130,8 +207,18 @@ Rota para atualizar uma locadora (PUT)
 
 ![purental](https://user-images.githubusercontent.com/63256085/153996012-59207a14-79b4-479a-94f9-b88566d89067.PNG)
 
+(Qualquer campo pode ser alterado)
+Exemplo:
+```bash
+
+{ 
+
+"nome": "Localiza test a Car", 
+"atividades": "Atividades teste "
+
+}
+ ```
 Rota para deletar uma locadora (DELETE)
 <br>
 
 ![deleterental](https://user-images.githubusercontent.com/63256085/153996030-78d96224-807f-44fe-bf7f-eb50c0c25a62.PNG)
-
