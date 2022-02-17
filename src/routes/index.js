@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const carsRouter = require("./carsRouter.js");
+const carsRouter = require("./carsRouter");
 const peopleRouter = require("./peopleRouter");
 const authenticationRouter = require("./authenticationRouter");
-const rentalRouter = require('./rentalRouter.js');
+const rentalRouter = require('./rentalRouter');
 const swaggerRouter = require('./swaggerRouter');
 
 module.exports = server => {

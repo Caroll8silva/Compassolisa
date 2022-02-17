@@ -1,13 +1,9 @@
-const Joi = require('joi').extend(require('@joi/date'));
+/* const Joi = require('joi').extend(require('@joi/date'));
 
 module.exports = async (req, res, next) => {
   try {
     const schema = Joi.object({
-      id: Joi
-        .string()
-        .regex(/[0-9a-fA-F]{24}/)
-        .required()
-      
+      id: Joi.string().regex(/^[0-9A-Fa-f\d]/).required()
     });
   
     const { error } = await schema.validate(req.body, { abortEarly: false });
@@ -17,4 +13,4 @@ module.exports = async (req, res, next) => {
     return res.status(400).json({'description:': error.name, 'name:': error.message});
   }
   
-};
+}; */
