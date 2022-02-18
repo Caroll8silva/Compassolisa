@@ -1,11 +1,11 @@
 const carsSchema = require('../../schema/cars');
 const NotUnique = require('../../errors/NotUnique');
 
-const isUnique = async (data) => {
+const isUnique = async (modelo) => {
 
-  const search = await carsSchema.findOne({ data });
+  const search = await carsSchema.findOne({ modelo });
 
-  if (search) throw new NotUnique(`this ${data} already exists`);
+  if (search) throw new NotUnique(`this ${modelo} already exists`);
 
 };
 

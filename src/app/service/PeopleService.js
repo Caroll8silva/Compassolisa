@@ -1,13 +1,14 @@
 const PeopleRepository = require('../repository/peopleRepository');
-const isUnique = require('../utils/people/isUniqueValidate');
+const isUniqueCpf = require('../utils/people/isUniqueCpf');
+const isUniqueEmail= require('../utils/people/isUniqueEmail');
 
 
 class PeopleService { 
 
   async create(payload) {
      
-    await isUnique(payload.cpf);
-    await isUnique(payload.email);
+    await isUniqueCpf(payload.cpf);
+    await isUniqueEmail(payload.email);
     const result = await PeopleRepository.create(payload);
     return result;
 

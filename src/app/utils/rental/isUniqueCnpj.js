@@ -1,11 +1,11 @@
 const rentalSchema = require('../../schema/rental');
 const NotUnique = require('../../errors/NotUnique');
 
-const isUnique = async (data) => {
+const isUnique = async (cnpj) => {
 
-  const search = await rentalSchema.findOne({ data });
+  const search = await rentalSchema.findOne({ cnpj });
 
-  if (search) throw new NotUnique(`this ${data} already exists`);
+  if (search) throw new NotUnique(`this ${cnpj} already exists`);
 
 };
 
