@@ -13,8 +13,8 @@ module.exports = (req, res, next) => {
 
     token = token.replace('Bearer ', '');
     
-    const decoded = jwt.verify(token, auth.secret);
-    req.response = decoded;
+    const search = jwt.verify(token, auth.secret);
+    req.response = search;
     
     return next();
   } catch (error) {
