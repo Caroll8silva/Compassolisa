@@ -25,6 +25,8 @@ Para o funcionamento da API é preciso ter instalado em sua maquina as seguintes
 - mongoose-paginate-v2
 - axios
 - dotenv
+- cors
+- swagger-ui-express
 ## EXECUTANDO A API
 
 ```bash
@@ -35,7 +37,7 @@ $ git clone https://github.com/Caroll8silva/Compassolisa.git
 $ cd compassolisa
 
 # Instale as dependências
-$ npm install @joi/date bcryptjs express joi jsonwebtoken mongoose mongoose-paginate-v2 axios dotenv
+$ npm install @joi/date bcryptjs express joi jsonwebtoken mongoose mongoose-paginate-v2 axios dotenv cors swagger-ui-express
 
 # Execute a aplicação em modo de produção
 $ npm start
