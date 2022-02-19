@@ -37,10 +37,29 @@ beforeEach(async () => {
 });
   
 describe("creating a car", () => {
-
+  const carsInformation = {
+    modelo: 'GM S10 2.5',
+    cor: 'branco',
+    ano: '2021',
+    acessorios: [
+      { descricao: 'Tração 4x4' },
+      { descricao: '4 portas' },
+      { descricao: 'Diesel' },
+      { descricao: 'Air bag' },
+      { descricao: 'ABS' }
+    ],
+    quantidadePassageiros: 5
+  };
   it("Should be possible to create a car", async () => {
-    const carsInformation = {
-      modelo: 'GM S10 2.5',
+    
+    const response = await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`)
+      .send(carsInformation);
+      
+    const { status } = response;
+    expect(status).toBe(201);
+  });
+  it("Should return an error if the model already exists", async () => {
+    const OtherInformation = {modelo: 'GM S10 2.5',
       cor: 'branco',
       ano: '2021',
       acessorios: [
@@ -50,14 +69,16 @@ describe("creating a car", () => {
         { descricao: 'Air bag' },
         { descricao: 'ABS' }
       ],
-      quantidadePassageiros: 5
     };
-    const response = await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`)
+    
+    await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`)
       .send(carsInformation);
-      
+    const response = await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`)
+      .send(OtherInformation);
+    
     const { status } = response;
-    expect(status).toBe(201);
-  });
+    expect(status).toBe(400);
 
+  });
 });
 
