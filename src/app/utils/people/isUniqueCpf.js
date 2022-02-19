@@ -5,7 +5,7 @@ const isUnique = async (cpf) => {
 
   const search = await peopleSchema.findOne({ cpf });
 
-  if (search) throw new NotUnique(`this ${cpf} already exists`);
+  if (search) throw new NotUnique(`this cpf ${cpf} already exists`);
 
 };
 

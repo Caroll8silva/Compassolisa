@@ -5,7 +5,7 @@ const isUnique = async (modelo) => {
 
   const search = await carsSchema.findOne({ modelo });
 
-  if (search) throw new NotUnique(`this ${modelo} already exists`);
+  if (search) throw new NotUnique(`this car model ${modelo} already exists`);
 
 };
 

@@ -5,7 +5,7 @@ const isUnique = async (email) => {
 
   const search = await peopleSchema.findOne({ email });
 
-  if (search) throw new NotUnique(`this ${email} already exists`);
+  if (search) throw new NotUnique(`this email ${email} already exists`);
 
 };
 
