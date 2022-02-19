@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/server.js --ignore __tests__",
     "start": "node src/server.js",
-    "test": "jest --runInBand --coverage --coverageReporters --detectOpenHandles"
+    "test": "jest --runInBand --coverage --coverageReporters"
   },
   "keywords": [],
   "author": "",

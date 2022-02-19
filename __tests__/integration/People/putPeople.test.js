@@ -2,7 +2,7 @@
 const supertest = require('supertest');
 const { resolve } = require('path');
 const dotEnv = require('dotenv');
-const app = require('../../../src/app');
+const app = require('../../infra/AppTest');
 
 dotEnv.config({
 
