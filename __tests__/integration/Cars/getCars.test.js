@@ -61,5 +61,12 @@ describe("listing all cars", () => {
     expect(status).toBe(200);
 
   });
+  it("Should be possible to give an error when listing", async () => {
 
+    const response = await supertest(app).get('/api/v1/car/');
+  
+    const { status } = response;
+    expect(status).toBe(400);
+
+  });
 });
