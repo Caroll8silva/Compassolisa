@@ -53,6 +53,7 @@ describe("deleting a car", () => {
   };
 
   it("Should be possible to delete a car", async () => {
+    
     const { text } = await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`).send(carsInformation);    
     const { _id } = JSON.parse(text);
     await supertest(app).get('/api/v1/car/').set('Authorization', `Bearer ${token}`);
@@ -60,6 +61,19 @@ describe("deleting a car", () => {
     
     const { status } = response;
     expect(status).toBe(204);
+ 
+  });
+
+  it("Should be possible to throw an error if you can't delete", async () => {
+
+
+    const deleteError = await supertest(app).delete('/api/v1/people/:id');
+
+    const { status } = deleteError;
+    expect(status).toBe(400);
+
+
+    
   });
 
 });
