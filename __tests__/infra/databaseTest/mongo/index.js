@@ -11,10 +11,6 @@ class Database {
     return mongoose.connect(db);
 
   }
-
-  disconnect() {
-    return mongoose.connection.close();
-  }
 }
 
 module.exports = new Database().connect();
