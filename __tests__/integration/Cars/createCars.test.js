@@ -70,15 +70,26 @@ describe("creating a car", () => {
         { descricao: 'ABS' }
       ],
     };
-    
-    await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`)
-      .send(carsInformation);
     const response = await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`)
       .send(OtherInformation);
     
     const { status } = response;
     expect(status).toBe(400);
 
+  });
+
+  it("Should return error if user does not submit all required data", async () => {
+
+    const incompleteInformation = {modelo: 'GM S10 2.5',
+      cor: 'branco',
+      acessorios: [ ],
+    };
+
+    const response = await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`)
+      .send(incompleteInformation);
+      
+    const { status } = response;
+    expect(status).toBe(400);
   });
 });
 
