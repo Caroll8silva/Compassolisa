@@ -1,37 +1,91 @@
 /* eslint-disable no-undef */
 const supertest = require('supertest');
-const { resolve } = require('path');
-const dotEnv = require('dotenv');
+const carSchema = require("../../../src/app/schema/cars");
+const peopleSchema = require("../../../src/app/schema/people");
 const app = require('../../infra/AppTest');
 
-dotEnv.config({
+let token;
+beforeAll(async () => {
 
-  path: resolve(__dirname, '..', '.env.test')
+
+  const peopleInformation = {
+    nome: "joaozinho ciclano",
+    cpf: "131.147.860-49",
+    data_nascimento: "03/03/2000",
+    email: "joazinho@email.com",
+    senha: "123456",
+    habilitado: "sim"
+  
+  };
+
+  await supertest(app).post('/api/v1/people/').send(peopleInformation);
+
+  const response = await supertest(app).post('/api/v1/authenticate/').send({ 
+    email: peopleInformation.email, 
+    senha: peopleInformation.senha 
+  });
+
+  const { body } = response;
+  token = body.token;
+
+});
+
+beforeEach(async () => {
+
+  await carSchema.deleteMany();
+  await peopleSchema.deleteMany();
 });
 
 describe("updating a car", () => {
-    
+  const carsInformation = {
+    modelo: 'GM S10 2.5',
+    cor: 'branco',
+    ano: '2021',
+    acessorios: [
+      { descricao: 'Tração 4x4' },
+      { descricao: '4 portas' },
+      { descricao: 'Diesel' },
+      { descricao: 'Air bag' },
+      { descricao: 'ABS' }
+    ],
+    quantidadePassageiros: 5
+  };
 
-  it("It should be possible to updating a car", async () => {
+  const updateInformation = {
+    modelo: 'GMF S21',
+    cor: 'azul',
+    ano: '2019',
+    acessorios: [
+      { descricao: 'Tração 4x4' },
+      { descricao: '4 portas' },
+      { descricao: 'Diesel' },
+      { descricao: 'Air bag' },
+      { descricao: 'ABS' }
+    ],
+    quantidadePassageiros: 5
+  };
 
-    const response = await supertest(app).put('/api/v1/car/:id').send({
-      modelo: 'GM S10 2.8',
-      cor: 'branco',
-      ano: '2021',
-      acessorios: [
-        { descricao: 'Ar-condicionado' },
-        { descricao: 'Dir. Hidráulica' },
-        { descricao: 'Cabine Dupla' },
-        { descricao: 'Tração 4x4' },
-        { descricao: '4 portas' },
-        { descricao: 'Diesel' },
-        { descricao: 'Air bag' },
-        { descricao: 'ABS' }
-      ],
-      quantidadePassageiros: 5
-    });
+  it("Should be possible to updating a car", async () => {
 
-    expect(response.status);
+    const { text } = await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`).send(carsInformation);
+    const { _id } = JSON.parse(text);
+    await supertest(app).get('/api/v1/car/').set('Authorization', `Bearer ${token}`);
+    const response = await supertest(app).put(`/api/v1/car/${_id.toString()}`).set('Authorization', `Bearer ${token}`).send(updateInformation);;
+
+    const { status } = response;
+    expect(status).toBe(200);
+  });
+
+  it("Should be possible to give error when updating", async () => {
+
+    const { text } = await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`).send(carsInformation);
+    const { _id } = JSON.parse(text);
+    await supertest(app).get('/api/v1/car/').set('Authorization', `Bearer ${token}`);
+    const response = await supertest(app).put(`/api/v1/car/${_id.toString()}`).send(updateInformation);;
+
+    const { status } = response;
+    expect(status).toBe(400);
+
   });
 
 });
