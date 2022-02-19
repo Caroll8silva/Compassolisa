@@ -54,6 +54,7 @@ describe("creating a car", () => {
     };
     const response = await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`)
       .send(carsInformation);
+      
     const { status } = response;
     expect(status).toBe(201);
   });

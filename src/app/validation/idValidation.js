@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
         .string()
         .min(24)
         .max(24)
-        .pattern(/^[0-9A-Fa-f\d]{24}$/)
+        .pattern(/^[0-9A-Fa-f\d]/)
         
     });
   
