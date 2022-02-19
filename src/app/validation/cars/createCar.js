@@ -5,6 +5,7 @@ module.exports = async (req, res, next) => {
     const schema = Joi.object({
       modelo: Joi
         .string()
+        .min(3)
         .trim()
         .required(),
       cor: Joi

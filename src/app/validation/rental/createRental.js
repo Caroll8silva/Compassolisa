@@ -25,6 +25,7 @@ module.exports = async (req, res, next) => {
         .items({
           cep: Joi
             .string()
+            .trim()
             .min(1)
             .required(),
           logradouro: Joi

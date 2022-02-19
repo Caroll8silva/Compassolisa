@@ -37,8 +37,8 @@ class PeopleService {
 
   async update(id, payload) {
 
-    await isUnique(payload.cpf);
-    await isUnique(payload.email);
+    await isUniqueCpf(payload.cpf);
+    await isUniqueEmail(payload.email);
     const result = await PeopleRepository.update(id, payload);
     return result;
 
