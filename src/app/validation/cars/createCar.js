@@ -5,9 +5,12 @@ module.exports = async (req, res, next) => {
     const schema = Joi.object({
       modelo: Joi
         .string()
+        .min(3)
+        .trim()
         .required(),
       cor: Joi
         .string()
+        .trim()
         .required(),
       ano: Joi
         .number()
@@ -21,6 +24,7 @@ module.exports = async (req, res, next) => {
           descricao: Joi
             .string()
             .required()
+            .trim()
         })
         .unique()
         .min(1),
@@ -33,6 +37,6 @@ module.exports = async (req, res, next) => {
     if (error) throw error;
     return next();
   } catch (error) {
-    return res.status(400).json(error.message);
+    return res.status(400).json({'description:': error.name, 'name:': error.message});
   }
 };

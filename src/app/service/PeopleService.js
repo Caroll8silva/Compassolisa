@@ -1,6 +1,7 @@
 const PeopleRepository = require('../repository/peopleRepository');
 const isUniqueCpf = require('../utils/people/isUniqueCpf');
-const isUniqueEmail = require('../utils/people/isUniqueEmail');
+const isUniqueEmail= require('../utils/people/isUniqueEmail');
+
 
 class PeopleService { 
 

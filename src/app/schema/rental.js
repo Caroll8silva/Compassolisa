@@ -23,14 +23,12 @@ const RentalSchema = mongoose.Schema(
         },
         logradouro: {
           type: String,
-          required: true
         },
         complemento: {
           type: String
         },
         bairro: {
           type: String,
-          required: true
         },
         number: {
           type: String,
@@ -38,11 +36,9 @@ const RentalSchema = mongoose.Schema(
         },
         localidade: {
           type: String,
-          required: true
         },
         uf: {
           type: String,
-          required: true
         },
         isFilial: {
           type: Boolean,
@@ -52,6 +48,13 @@ const RentalSchema = mongoose.Schema(
     ]
   }
 );
+
+RentalSchema.set('toJSON', {
+  transform (doc, rest){
+  
+    delete rest.__v; 
+  }
+});
 
 RentalSchema.plugin(mongoosePaginate);
 

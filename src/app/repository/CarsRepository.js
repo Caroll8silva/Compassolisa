@@ -1,4 +1,4 @@
-const carsSchema = require('../schema/cars.js');
+const carsSchema = require('../schema/cars');
 
 class CarsRepository { 
   async create(payload) {
@@ -27,6 +27,15 @@ class CarsRepository {
     return carsSchema.findByIdAndUpdate(id, payload, { new: true });
     
   }
+
+  async patch(id, payload) {
+    return carsSchema.findOneAndUpdate(
+      { id, 'acessorios._id': payload._id }, 
+      { $set: { 'acessorios.$.descricao': payload.descricao }},
+      { new: true}
+    );
+  }
+    
 }
 
 module.exports = new CarsRepository();   

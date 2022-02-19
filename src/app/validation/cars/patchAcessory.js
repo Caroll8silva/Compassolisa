@@ -3,26 +3,24 @@ const Joi = require('joi');
 module.exports = async (req, res, next) => {
   try {
     const schema = Joi.object({
-      modelo: Joi
-        .string(),
-      cor: Joi
-        .string(),
-      ano: Joi
-        .number()
-        .integer()
-        .min(1950)
-        .max(2022),
-      acessorios: Joi
-        .array()
-        .items({ 
-          descricao: Joi
-            .string()
-        })
-        .unique()
-        .min(1),
-      quantidadePassageiros: Joi
-        .number()
+      id: Joi
+        .string()
+        .min(24)
+        .max(24)
+        .pattern(/^[0-9A-Fa-f\d]/),
+      id2: Joi
+        .string()
+        .min(24)
+        .max(24)
+        .pattern(/^[0-9A-Fa-f\d]/),
+      descricao: Joi
+        .string()
+        .trim()
+        .min(3)
+        .required()
+
     });
+       
   
     const { error } = await schema.validate(req.body, { abortEarly: false });
     if (error) throw error;

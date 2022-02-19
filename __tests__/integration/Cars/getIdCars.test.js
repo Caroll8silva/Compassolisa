@@ -2,19 +2,19 @@
 const supertest = require('supertest');
 const { resolve } = require('path');
 const dotEnv = require('dotenv');
-const app = require('../../../src/app');
+const app = require('../../infra/AppTest');
 
 dotEnv.config({
 
   path: resolve(__dirname, '..', '.env.test')
 });
 
-describe("deleting a person", () => {
+describe("listing only one car", () => {
     
 
-  it("It should be possible to delete a person", async () => {
+  it("It should be possible to list only one car", async () => {
 
-    const response = await supertest(app).get('/api/v1/people/:id');
+    const response = await supertest(app).get('/api/v1/car/:id');
 
     expect(response.status);
   });

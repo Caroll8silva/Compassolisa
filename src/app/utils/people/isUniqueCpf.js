@@ -3,9 +3,9 @@ const NotUnique = require('../../errors/NotUnique');
 
 const isUnique = async (cpf) => {
 
-  const unique = await peopleSchema.findOne({ cpf });
+  const search = await peopleSchema.findOne({ cpf });
 
-  if (unique) throw new NotUnique('this cpf already exists');
+  if (search) throw new NotUnique(`this cpf ${cpf} already exists`);
 
 };
 

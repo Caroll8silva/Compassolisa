@@ -1,45 +1,45 @@
-const PeopleService = require("../service/PeopleService");
+const RentalService = require("../service/RentalService");
 
-class PeopleController {
-  async createPeople(req, res) {
+class RentalController {
+  async createRental(req, res) {
     try {
-      const result = await PeopleService.create(req.body);
+      const result = await RentalService.create(req.body);
       return res.status(201).json(result);
     } catch (error) {
       return res.status(500).json({'description:': error.name, 'name:': error.message});
     }
   }
 
-  async getAllPeople(req, res) {
+  async getAllRentals(req, res) {
     try {
-      const result = await PeopleService.find(req.query);
+      const result = await RentalService.find(req.query);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(500).json({'description:': error.name, 'name:': error.message});
     }
   }
 
-  async getOnePerson(req, res) {
+  async getOneRental(req, res) {
     try {
       const { id } = req.params;
-      const result = await PeopleService.findOne(id);
+      const result = await RentalService.findOne(id);
 
       if (!result) {
-        return res.status(404).json({ message: 'Person not found' });
+        return res.status(404).json({'description:': 'ID', 'name:': 'ID not Found'});
       }
-
       return res.status(200).json(result);
     } catch (error) {
       return res.status(500).json({'description:': error.name, 'name:': error.message});
     }
   }
 
-  async deletePeople(req, res) {
+  async deleteRental(req, res) {
     try {
       const { id } = req.params;
-      const result = await PeopleService.delete(id);
+      const result = await RentalService.delete(id);
+
       if (!result) {
-        return res.status(404).json({ message: 'Person not found' });
+        return res.status(404).json({'description:': 'ID', 'name:': 'ID not Found'});
       }
 
       return res.status(204).json();
@@ -48,11 +48,14 @@ class PeopleController {
     }
   }
 
-  async updatePeople(req, res) {
+  async updateRental(req, res) {
     try {
       const { id } = req.params;
-      const result = await PeopleService.update(id, req.body);
+      const result = await RentalService.update(id, req.body);
 
+      if (!result) {
+        return res.status(404).json({'description:': 'ID', 'name:': 'ID not Found'});
+      }
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({'description:': error.name, 'name:': error.message});
@@ -60,4 +63,4 @@ class PeopleController {
   }
 }
 
-module.exports = new PeopleController();
+module.exports = new RentalController();

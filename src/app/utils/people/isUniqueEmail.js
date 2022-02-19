@@ -3,9 +3,9 @@ const NotUnique = require('../../errors/NotUnique');
 
 const isUnique = async (email) => {
 
-  const unique = await peopleSchema.findOne({ email });
+  const search = await peopleSchema.findOne({ email });
 
-  if (unique) throw new NotUnique('this email already exists');
+  if (search) throw new NotUnique(`this email ${email} already exists`);
 
 };
 

@@ -10,7 +10,7 @@ class AuthenticationController {
       });
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(500).json(error.message);
+      return res.status(500).json({'description:': error.name, 'name:': error.message});
     }
   }
 }

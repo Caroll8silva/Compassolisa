@@ -6,9 +6,12 @@ module.exports = async (req, res, next) => {
     const schema = Joi.object({
       nome: Joi
         .string()
-        .required(),
+        .trim()
+        .required()
+        .min(3),
       cpf: Joi
         .string()
+        .trim()
         .required()
         .pattern(/^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/, cpfValidate)
         .min(11)
@@ -21,23 +24,25 @@ module.exports = async (req, res, next) => {
         .max('now'),
       email: Joi
         .string()
+        .trim()
         .email()
         .required(),
       senha: Joi
         .string()
+        .trim()
         .required()
         .min(6),
       habilitado: Joi
         .string()
         .required()
-        .valid('sim', 'Sim', 'não', 'Não')
+        .valid('sim','não')
     });
   
     const { error } = await schema.validate(req.body, { abortEarly: false });
     if (error) throw error;
     return next();
   } catch (error) {
-    return res.status(400).json(error.message);
+    return res.status(400).json({'description:': error.name, 'name:': error.message});
   }
   
 };

@@ -1,4 +1,4 @@
-const CarsRepository = require('../repository/carsRepository.js');
+const CarsRepository = require('../repository/CarsRepository');
 const isUnique = require('../utils/cars/isUniqueCar');
 
 class CarsService { 
@@ -38,7 +38,14 @@ class CarsService {
     const result = await CarsRepository.update(id, payload);
     return result;
 
-  }  
+  }
+ 
+  async patch(id, payload) {
+    
+    const result = await CarsRepository.patch({ id }, payload);
+    return result;
+
+  }   
 } 
 
 module.exports = new CarsService(); 

@@ -12,16 +12,11 @@ module.exports = {
   rules: {
     semi: ["error", "always"],
     indent: ["error", 2],
-    "prettier/prettier": "off",
-    "comma-spacing": ["error", { before: false, after: true }],
     "class-methods-use-this": "off",
     "import/no-unresolved": "off",
-    "import/extensions": "off",
     "no-param-reassign": "off",
     "no-underscore-dangle": "off",
-    "func-names": "off",
-    "import/no-extraneous-dependencies": "off",
-    "no-console": "off"
+    "no-console": "off" 
 
   },
 };

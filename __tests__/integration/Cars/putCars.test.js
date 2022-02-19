@@ -2,19 +2,19 @@
 const supertest = require('supertest');
 const { resolve } = require('path');
 const dotEnv = require('dotenv');
-const app = require('../../../src/app');
+const app = require('../../infra/AppTest');
 
 dotEnv.config({
 
   path: resolve(__dirname, '..', '.env.test')
 });
 
-describe("creating a car", () => {
+describe("updating a car", () => {
     
 
-  it("It should be possible to create a car", async () => {
+  it("It should be possible to updating a car", async () => {
 
-    const response = await supertest(app).post('/api/v1/car').send({
+    const response = await supertest(app).put('/api/v1/car/:id').send({
       modelo: 'GM S10 2.8',
       cor: 'branco',
       ano: '2021',

@@ -2,7 +2,7 @@
 const supertest = require('supertest');
 const { resolve } = require('path');
 const dotEnv = require('dotenv');
-const app = require('../../../src/app');
+const app = require('../../infra/AppTest');
 
 dotEnv.config({
 
@@ -16,7 +16,6 @@ describe("listing a car", () => {
 
     const response = await supertest(app).get('/api/v1/car');
 
-    expect(response.status);
-  });
+    expect(response.status).toBe(400);  });
 
 });

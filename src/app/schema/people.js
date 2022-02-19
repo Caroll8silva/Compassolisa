@@ -40,7 +40,7 @@ PeopleSchema.set('toJSON', {
   }
 });
 
-PeopleSchema.pre('save', async function(next){
+PeopleSchema.pre('save', async function password(next){
   const hash = await bcrypt.hash(this.senha, 10);
   this.senha = hash;
   next();

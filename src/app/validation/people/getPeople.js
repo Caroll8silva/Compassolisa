@@ -25,14 +25,14 @@ module.exports = async (req, res, next) => {
         .min(6),
       habilitado: Joi
         .string()
-        .valid('sim', 'Sim', 'não', 'Não')
+        .valid('sim', 'não')
     });
   
     const { error } = await schema.validate(req.body, { abortEarly: false });
     if (error) throw error;
     return next();
   } catch (error) {
-    return res.status(400).json(error.message);
+    return res.status(400).json({'description:': error.name, 'name:': error.message});
   }
   
 };
