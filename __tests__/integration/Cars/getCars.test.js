@@ -16,7 +16,6 @@ describe("listing a car", () => {
 
     const response = await supertest(app).get('/api/v1/car');
 
-    expect(response.status);
-  });
+    expect(response.status).toBe(400);  });
 
 });
