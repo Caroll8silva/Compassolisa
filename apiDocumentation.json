@@ -564,11 +564,6 @@
     },
     "/people": {
       "get": {
-        "security": [
-          {
-            "auth": []
-          }
-        ],
         "tags": [
           "Pessoas"
         ],
@@ -653,11 +648,6 @@
         }
       },
       "post": {
-        "security": [
-          {
-            "auth": []
-          }
-        ],
         "tags": [
           "Pessoas"
         ],
@@ -735,11 +725,6 @@
     },
     "/people/{id}": {
       "get": {
-        "security": [
-          {
-            "auth": []
-          }
-        ],
         "tags": [
           "Pessoas"
         ],
@@ -796,11 +781,6 @@
         }
       },
       "put": {
-        "security": [
-          {
-            "auth": []
-          }
-        ],
         "tags": [
           "Pessoas"
         ],
@@ -890,11 +870,6 @@
         }
       },
       "delete": {
-        "security": [
-          {
-            "auth": []
-          }
-        ],
         "tags": [
           "Pessoas"
         ],
