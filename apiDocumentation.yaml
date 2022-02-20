@@ -348,8 +348,6 @@ paths:
               example: "ID not found"
   /people:
     get:
-      security:
-        - auth: []
       tags:
         - Pessoas
       summary: Listar todas as pessoas
@@ -403,8 +401,6 @@ paths:
                         - sim
                         - não
     post:
-      security:
-        - auth: []
       tags:
         - Pessoas
       summary: Cadastrar pessoa
@@ -453,8 +449,6 @@ paths:
               example: "Person not registered"
   /people/{id}:
     get:
-      security:
-        - auth: []
       tags:
         - Pessoas
       summary: listar uma pessoa
@@ -490,8 +484,6 @@ paths:
             application/json:
               example: "bad request"
     put:
-      security:
-        - auth: []
       tags:
         - Pessoas
       summary: Atualizar uma pessoa
@@ -548,8 +540,6 @@ paths:
             application/json:
               example: "bad request"
     delete:
-      security:
-        - auth: []
       tags:
         - Pessoas
       summary: Excluir pessoa
