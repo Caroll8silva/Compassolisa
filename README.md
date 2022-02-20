@@ -46,6 +46,11 @@ $ npm start
 ```
 ## ACESSANDO AS ROTAS
 
+### Rota de documentação
+Rota para documentação da API no Swagger
+
+http://localhost:3000/api/v1/api-docs/
+
 ### Rota de autenticação
 Rota para autenticação do usuário (POST)
 <br>
