@@ -17,6 +17,10 @@
     {
       "url": "http://localhost:3000/api/v1/",
       "description": "API Compassolisa"
+    },
+    {
+      "url": "https://api-compassolisa.herokuapp.com/api/v1/",
+      "description": "Heroku server"
     }
   ],
   "paths": {
