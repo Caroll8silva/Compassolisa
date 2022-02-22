@@ -14,6 +14,14 @@ Para o funcionamento da API é preciso ter instalado em sua maquina as seguintes
 
 ![tecnologias](https://user-images.githubusercontent.com/63256085/152076865-cd775e23-e174-4ee3-bcf9-90c30f89acf8.png)
 
+## DEPLOY DA APLICAÇÃO 
+<br>
+<br>
+
+https://api-compassolisa.herokuapp.com/api/v1/api-docs
+
+<br>
+<br>
 ## PACOTES PARA O FUNCIONAMENTO DA API
 
 - @joi/date
