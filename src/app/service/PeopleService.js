@@ -1,4 +1,4 @@
-const PeopleRepository = require('../repository/peopleRepository');
+const PeopleRepository = require('../repository/PeopleRepository');
 const isUniqueCpf = require('../utils/people/isUniqueCpf');
 const isUniqueEmail= require('../utils/people/isUniqueEmail');
 
