@@ -52,11 +52,20 @@ describe("creating a car", () => {
   };
   it("Should be possible to create a car", async () => {
     
-    const response = await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`)
+    const response  = await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`)
       .send(carsInformation);
       
-    const { status } = response;
-    expect(status).toBe(201);
+    if(!response) { 
+      const { status } = response;
+      expect(status).toBe(400);}
+
+    else {
+      const { status } = response;
+      const { body } = response;
+      expect(status).toBe(201);
+      expect(body).toHaveProperty('_id');
+    }
+    
   });
   it("Should return an error if the model already exists", async () => {
     const OtherInformation = {modelo: 'GM S10 2.5',
@@ -91,5 +100,55 @@ describe("creating a car", () => {
     const { status } = response;
     expect(status).toBe(400);
   });
-});
+  it("Should return an error if the model is not entered", async () => {
 
+    const modelInformation = {
+      modelo: ' ',
+      cor: 'branco',
+      ano: '2020',
+      acessorios: [
+        { descricao: 'Tração 4x4' },
+        { descricao: '4 portas' },
+        { descricao: 'Diesel' },
+        { descricao: 'Air bag' },
+        { descricao: 'ABS' }
+      ],
+    };
+
+    const response = await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`)
+      .send(modelInformation);
+    if(modelInformation.modelo === null){ 
+      
+      const { status } = response;
+      expect(status).toBe(400);
+
+    } 
+    
+  });
+  
+  it("Should return an error if the color is not entered", async () => {
+
+    const colorInformation = {
+      modelo: 'GM 24 S',
+      cor: ' ',
+      ano: '2020',
+      acessorios: [
+        { descricao: 'Tração 4x4' },
+        { descricao: '4 portas' },
+        { descricao: 'Diesel' },
+        { descricao: 'Air bag' },
+        { descricao: 'ABS' }
+      ],
+    };
+  
+    const response = await supertest(app).post('/api/v1/car/').set('Authorization', `Bearer ${token}`)
+      .send(colorInformation);
+    if(colorInformation.color === null){ 
+        
+      const { status } = response;
+      expect(status).toBe(400);
+  
+    }
+  });
+
+});

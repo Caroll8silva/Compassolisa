@@ -28,8 +28,16 @@ describe("creating a people", () => {
     const response = await supertest(app).post('/api/v1/people/')
       .send(peopleInformation);
       
-    const { status } = response;
-    expect(status).toBe(201);
+    if(!response) { 
+      const { status } = response;
+      expect(status).toBe(400);}
+  
+    else {
+      const { status } = response;
+      const { body } = response;
+      expect(status).toBe(201);
+      expect(body).toHaveProperty('_id');
+    }
   });
   it("Should return error if user does not submit all required data", async () => {
 

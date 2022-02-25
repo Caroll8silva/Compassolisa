@@ -58,6 +58,7 @@ describe("listing all cars", () => {
     const response = await supertest(app).get('/api/v1/car/').set('Authorization', `Bearer ${token}`);
   
     const { status } = response;
+    
     expect(status).toBe(200);
 
   });
